@@ -1,4 +1,4 @@
-
+// src/VoiceInputComponent.jsx
 import React from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
@@ -13,4 +13,19 @@ const VoiceInputComponent = ({ onTextSubmit }) => {
     SpeechRecognition.startListening();
   };
 
-  const handleSt
+  const handleStopListening = () => {
+    SpeechRecognition.stopListening();
+    onTextSubmit(transcript);
+    resetTranscript();
+  };
+
+  return (
+    <div>
+      <button onClick={handleVoiceInput}>Start Voice Input</button>
+      <button onClick={handleStopListening}>Stop Voice Input</button>
+      <p>{transcript}</p>
+    </div>
+  );
+};
+
+export default VoiceInputComponent;
